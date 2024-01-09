@@ -38,6 +38,8 @@ def signup(request):
 
     return render(request, 'base/signup.html', {'form': form})
 
+def home(request):
+    return redirect('login')
 
 @login_required(login_url='login')
 def dashboard(request):
