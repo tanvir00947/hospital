@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        img {
+            width: 200px; /* Set the width as per your preference */
+            height: auto; /* Maintain the image's aspect ratio */
+            border-radius: 5px; /* Add rounded corners to the image */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3><a href="{% url 'logout' %}">Logout</a></h3>
+    {% if request.user.is_doctor %}
+    <h2>Welcome to Doctor Dashboard</h2>
+    {% else %}
+    <h2>Welcome to Patient Dashboard</h2>
+    {% endif %}
+    <h3>User Details:</h3>
+    <p>First Name: {{ request.user.first_name }}</p>
+    <p>Last Name: {{ request.user.last_name }}</p>
+    <p>Username: {{ request.user.username }}</p>
+    <p>Email: {{ request.user.email }}</p>
+    <div>
+        <p>Profile Picture:</p>
+        <img src="{{ request.user.imageURL }}" alt="Profile Picture">
+    </div>
+    <p>Address: {{ request.user.address_line1 }}, {{ request.user.city }}, {{ request.user.state }} {{ request.user.pincode }}</p>
+    <!-- Add other details as needed -->
+</body>
+</html>
