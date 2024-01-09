@@ -22,3 +22,4 @@ class User(AbstractUser):
         except:
             url = ''
         return url
+ 
